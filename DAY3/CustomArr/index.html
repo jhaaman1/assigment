@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Custom Array</h1>
+</body>
+</html>
+
+<script>
+
+   
+
+    function myArray() {
+        Object.defineProperty(this, 'length', {
+            value: 0,
+            writable: true,
+            enumerable: false,
+        });
+
+        this.length = arguments.length;
+
+        for(let i=0; i<arguments.length; i++){
+            this[i] = arguments[i];
+        }
+    }
+
+    let arr = new myArray(1,2,3,4);
+
+    myArray.prototype.पुश = function (value) {
+        this[this.length] = value;
+        this.length++;
+    };
+
+    arr.पुश(3)
+    console.log(arr);
+
+    myArray.prototype.पुल = function () {
+        delete this[this.length-1];
+        this.length--;
+    };
+
+    arr.पुल();
+    console.log(arr);
+
+    myArray.prototype.पीक = function (){
+        if (this.length === 0) {
+      throw new Error("out of bounds")
+    }
+    return this[this.length - 1];
+    }
+
+    arr.पीक();
+    console.log(arr);
+
+    myArray.prototype.प्रिंट = function (){
+        console.log(Object.values(this));
+    }
+
+    // arr.प्रिंट()
+
+    myArray.prototype. साइज = function (){
+        console.log(this(this.length));
+    }
+    
+
+    myArray.prototype.reverse = function reverse(str){
+        return str.split('').reverse().join('');
+    }
+    // reverse('aman')
+
+</script>

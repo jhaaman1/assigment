@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #navbar{
+            border: 1px solid red;
+            height: 40px;
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            background-color: teal;
+            
+        }
+
+        h3{
+            color: white;
+            /* padding-bottom: 20px; */
+        }
+
+        #form{
+            /* border: 1px solid; */
+            text-align: center;
+            width: 300px;
+            height: 200px;
+            margin-left: 450px;
+            margin-top: 100px;
+            padding-top: 80px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Signup pages</h1>
+    <div id="navbar">
+    <a href="index.html"><h3>Home</h3></a>
+    <a href="signup.html"><h3>Signup</h3></a>
+    <a href="login.html"><h3>Login</h3></a>
+    </div>
+
+    <div>
+        <h3>Signup</h3>
+        <form id="form">
+            <label for="">Name:</label>
+            <input type="text" id="name" placeholder="Enter Name"><br><br>
+            <label for="">Contact No:</label>
+            <input type="number" id="contact" placeholder="Enter mobile number"><br><br>
+            <label for="">Email:</label>
+            <input type="text" id="email" placeholder="Enter Email"><br><br>
+            <label for="">Password:</label>
+            <input type="password" id="password" placeholder="Enter Password"><br><br>
+            <input type="submit" id="submit" onclick="getDetails()" >
+        </form>
+    </div>
+
+</body>
+</html>
+
+<script>
+
+    function create(n,m,e,p){
+        this.name = n;
+        this.mobile = m;
+        this.email = e;
+        this.password = p;
+    }
+
+    let arr = JSON.parse(localStorage.getItem('details'))
+
+    function getDetails(){
+        event.preventDefault();
+        
+        let form = document.getElementById('form');
+
+        let name = document.querySelector('#name').value;
+
+        let mobile = document.querySelector('#contact').value;
+
+        let email = document.querySelector('#email').value;
+
+        let password = document.querySelector('#password').value;
+
+        let res = new create(name,mobile,email,password);
+
+        if(name === '' || mobile === '' || email === '' || password === ''){
+                return alert('Enter all Valid Credentials')
+            }
+
+        for(let i=0; i<arr.length; i++){
+            if(arr[i].email === email){
+                return alert('User already Exist');
+            }
+        }
+
+        arr.push(res);
+        localStorage.setItem('details',JSON.stringify(arr))
+        document.querySelector('input').value = null;
+        alert('Signup Sucessful');
+        window.location.href = 'login.html';
+        
+    }
+
+
+</script>

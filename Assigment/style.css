@@ -1,0 +1,21 @@
+form{
+    text-align: center;
+    margin-top: 190px;
+}
+
+#navbar{
+    border: 1px solid;
+    width: 100%;
+    height: 50px;
+    background-color: teal;
+    display: flex;
+    gap: 20px;
+}
+
+h3{
+    color: white;
+}
+
+#select{
+    background-color: teal;
+}

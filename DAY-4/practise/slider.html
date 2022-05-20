@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="url" id="url">
+
+    <button onclick="storeImages()">Store Images</button>
+    <button onclick="gotoSlideshow()">Watch slideshow</button>
+</body>
+</html>
+
+<script>
+
+    function gotoSlideshow(){
+        window.location.href = 'slideshow.html';
+    }
+
+    //slideshow
+    function storeImages(){
+
+        // step1: accept user input into array
+
+        let image_url = document.getElementById('url').value;
+
+        // now we need to check before procedding that there is an array should be present for push images;
+
+        // step2: so pickup either empty array or localstorage array;
+
+        let images = JSON.parse(localStorage.getItem('images')) || [];
+
+        images.push(image_url);
+
+        //so now need to set item to the localstorage;
+
+        localStorage.setItem('images',JSON.stringify(images));
+
+        document.getElementById('url').value = null;
+    }
+
+
+
+
+</script>

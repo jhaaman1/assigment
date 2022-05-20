@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    // const product = {
+    //     brand: 'Nike',
+    //     logo: 'Nike',
+    //     seller: 'flipkart'
+    // }
+
+    // const p1 = Object.create(product, {type: {value: 't-shirt'}})
+    // const p2 = Object.create(product)
+    // console.log('p1:',p1);
+    // console.log('p2:',p2);
+
+    // function Product(type){
+    //     this.type = type;
+    //     this.brand = 'nike';
+    //     this.logo = 'url';
+    //     this.seller = 'flipkart';
+    // }
+
+  
+    // Product.prototype.changtType = (type)=>{
+    //     this.type = type;
+    // }
+
+    // Product.prototype.price = '1000'
+
+    // let p1 = new Product('shoe')
+    // console.log(p1);
+    // let s1 = new Product('')
+
+
+    let arr = [1,2,3];
+
+    let arr2 = new Array(1,2,3)
+    console.log(arr2);
+
+    function  myArray(){
+        Object.defineProperty(this, 'length',{
+            value: 0,
+            writable: true,
+            enumerable: false,
+        });
+
+        this.length = arguments.length;
+
+        for(let i=0; i<arguments.length; i++){
+            this[i] = arguments[i]
+        }
+    }
+
+    let arr3 = new myArray(1,2,3,4,5)
+    console.log(Object.values(arr3));
+</script>

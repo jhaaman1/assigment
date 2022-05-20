@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Page</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 10px;
+        }
+
+        #container img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product's Page</h1>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    let product = JSON.parse(localStorage.getItem('products')) || [];
+
+    function tempcall() {
+        document.querySelector('#container').innerHTML = null;
+
+    product.map((el,index,arr)=>{
+
+        // console.log(el);
+        let div = document.createElement('div');
+
+        let name = document.createElement('p');
+        name.innerText = el.name;
+
+        let category = document.createElement('p');
+        category.innerText = el.category;
+
+        let image = document.createElement('img');
+        image.src = el.image;
+
+        let price = document.createElement('p');
+        price.innerText = el.price;
+
+        let gender = document.createElement('p');
+        gender.innerText = el.gender;
+
+        let sold = document.createElement('button');
+        sold.innerHTML = 'Sold';
+        sold.setAttribute('id','toogle');
+
+        let remove = document.createElement('button');
+        remove.innerHTML = 'Remove';
+        remove.addEventListener('click',()=>{
+           myfun(index)
+        })
+
+        div.append(image,name,category,price,gender,sold,remove);
+        document.querySelector('#container').append(div);
+    })
+
+}
+tempcall()
+    function myfun(index){
+        product.splice(index,1);
+        localStorage.setItem('products',JSON.stringify(product))
+        tempcall()
+    }
+
+    document.querySelector('#toogle').addEventListener('click', () => {
+        // if(sold.value === true){
+            
+        // }
+    })
+</script>
