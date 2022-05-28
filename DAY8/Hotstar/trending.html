@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trnding Hotstar</title>
+</head>
+<body>
+    <h1>Trending Movies</h1>
+
+    <div id="showMovie"></div>
+</body>
+</html>
+
+
+<script>
+
+// https://api.themoviedb.org/3/movie/550?api_key=2725234c90debe70555cb2a673ce551c
+
+let movies_div = document.getElementById('showMovie');
+
+const url = 'https://api.themoviedb.org/3/movie/550?api_key=2725234c90debe70555cb2a673ce551c';
+
+async function showData(){
+
+    try{
+
+        let res = await fetch(url);
+
+        let data = await res.json();
+        console.log(data.production_companies);
+
+        appendData(data);
+
+    }catch(err){
+        console.log('err:',err);
+    }
+}
+
+showData();
+
+function appendData(data) {
+    
+    showMovie.forEach((el) => {
+        let name = document.createElement('p')
+        name.innerText = el.name;
+
+        let img = document.createElement('img')
+        img.src = el.logo_path;
+
+        let country = document.createElement('p')
+        country.innerText = `Country- ${el.origin_country}`;
+
+        movies_div.append(img,name,country)
+    })
+
+}
+
+appendData()
+
+
+</script>

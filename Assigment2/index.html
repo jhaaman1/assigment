@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars</title>
+</head>
+<body>
+    <h1>Star Wars</h1>
+    
+
+    <input type="text" oninput="getname()" id="star" placeholder="Search Characters">
+    <div id="movies"></div>
+
+</body>
+</html>
+
+<script>
+
+// https://swapi.dev/api/people/?search=${q}
+
+let detail = document.getElementById('movies');
+
+    const url = 'https://swapi.dev/api/people/?search='
+
+    async function char(){
+        try{
+
+            let res =await fetch(url);
+
+            let data =await res.json();
+            // console.log('data:',data);
+            return data.results;
+
+        }catch(err){
+            console.log(err);
+        }
+
+    }
+
+    // char();
+
+    function appendchar(movie){
+       
+
+        movie.map((el) =>{
+
+            let name = document.createElement('p')
+            name.innerHTML = el.name;
+
+            detail.append(name);
+
+        })
+
+    }
+
+
+    async function getname(movies){
+
+        let star = document.getElementById('star').value;
+        // console.log(star);
+        let response = char();
+        // console.log('response:',response);
+        let data = await response;
+        // console.log(data.results);
+
+        appendchar(data)
+
+    }
+
+</script>

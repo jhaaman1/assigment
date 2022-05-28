@@ -58,19 +58,30 @@
     console.log(arr);
 
     myArray.prototype.प्रिंट = function (){
-        console.log(Object.values(this));
+        let bag = '';
+        for(let i=0; i<this.length; i++){
+            console.log(i);
+        }
     }
 
     // arr.प्रिंट()
 
-    myArray.prototype. साइज = function (){
-        console.log(this(this.length));
+    myArray.prototype.साइज = function (){
+        console.log(arr.length);
     }
     
 
-    myArray.prototype.reverse = function reverse(str){
-        return str.split('').reverse().join('');
+    myArray.prototype.प्रिंट_reverse = function(){
+        let index = this.length-1;
+        let bag = [];
+        for(let i=index; i>0; i--){
+            bag.push(arr[i]);
+        }
+        console.log(arr[index])
     }
     // reverse('aman')
+
+    let ar = new myArray('a','b','c','d','e','f');
+
 
 </script>
